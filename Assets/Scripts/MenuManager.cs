@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class MenuManager : MonoBehaviour
@@ -20,5 +22,10 @@ public class MenuManager : MonoBehaviour
     {
         yield return new WaitForSeconds(22f);
         canvas.enabled = true;
+    }
+
+    public void StartGame ()
+    {
+        SceneManager.LoadScene("Hotel");
     }
 }
