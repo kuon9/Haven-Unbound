@@ -7,12 +7,11 @@ using UnityEngine.UIElements;
 
 public class MenuManager : MonoBehaviour
 {
-    private Canvas canvas;
+    public GameObject canvas;
 
     void Start()
     {
-        canvas = GetComponent<Canvas>();
-        canvas.enabled = false;
+        canvas.SetActive(false);
 
         StartCoroutine(ActivateCanvas());
     }
@@ -20,8 +19,8 @@ public class MenuManager : MonoBehaviour
     //Activate Canvas after Cutscene
     IEnumerator ActivateCanvas ()
     {
-        yield return new WaitForSeconds(22f);
-        canvas.enabled = true;
+        yield return new WaitForSeconds(33f);
+        canvas.SetActive(true);
     }
 
     public void StartGame ()
