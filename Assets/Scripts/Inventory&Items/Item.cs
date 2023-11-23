@@ -5,6 +5,7 @@ using UnityEngine;
 public enum ItemType
 {
     KeyItem,
+    AbilityItem,
     baseItem
 }
 public class Item

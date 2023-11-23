@@ -18,7 +18,8 @@ public class ItemDataBase : MonoBehaviour
     {
         Items = new List<Item>()
         {
-            new Item(0,"Item Name",ItemType.baseItem) // this is what to add when adding a new item
+            new Item(0,"Item Name",ItemType.baseItem), // this is what to add when adding a new item
+            new Item(1,"dash Ability",ItemType.AbilityItem)
         };
     }
 }
