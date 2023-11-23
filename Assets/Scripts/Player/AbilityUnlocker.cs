@@ -3,9 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+public enum AbilityType
+{
+    dash,
+    doubleJump
+}
 public class AbilityUnlocker : MonoBehaviour
 {
-    [SerializeField] bool unlockDash, unlockDoubleJump;
+   // [SerializeField] bool unlockDash, unlockDoubleJump;
+    [SerializeField] AbilityType type;
     [SerializeField] GameObject pickupEffect;
     [SerializeField] TMP_Text unlockedText;
     public string unlockMessage;
@@ -32,16 +38,19 @@ public class AbilityUnlocker : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            AbilityTracker player = other.GetComponentInParent<AbilityTracker>();
+            //AbilityTracker player = other.GetComponentInParent<AbilityTracker>();
+            Inventory inventory = other.GetComponent<Inventory>();
 
-            if(unlockDash)
+            if(type == AbilityType.dash)
             {
-                player.canDash = true;
+                //player.canDash = true;
+                inventory.GiveItem(1);
             }
 
-            if(unlockDoubleJump)
+            if(type == AbilityType.doubleJump)
             {
-                player.canDoubleJump = true;
+                //player.canDoubleJump = true;
+                inventory.GiveItem(2);
             }
             
              Instantiate(pickupEffect, transform.position, Quaternion.identity);
