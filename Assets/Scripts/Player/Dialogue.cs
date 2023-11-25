@@ -18,8 +18,8 @@ public class Dialogue : MonoBehaviour
     void Start()
     {
         //DialogueUI.SetActive(false);
-        // if (!isTriggered) {return;}
-        // DialogueUI.SetActive(true);
+        if (!isTriggered) {return;}
+        DialogueUI.SetActive(true);
         textComponent.text = string.Empty;
         StartDialogue();            
     }
