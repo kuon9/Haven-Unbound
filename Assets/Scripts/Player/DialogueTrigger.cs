@@ -8,11 +8,13 @@ public class DialogueTrigger : MonoBehaviour
 {
     public bool playerinRange;
     public GameObject popUpText;
+    Dialogue dialogue;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        // Calling a function another gameobject. I should tag for the gameobject and the getcomponent is the script
+        dialogue = GameObject.FindGameObjectWithTag("Dialogue").GetComponent<Dialogue>();  
     }
 
     // Update is called once per frame
@@ -29,7 +31,8 @@ public class DialogueTrigger : MonoBehaviour
         if(playerinRange && Keyboard.current.eKey.wasPressedThisFrame)
         {       
             Debug.Log("Dialogue Starting");
-            Dialogue.isTriggered = true;    
+            dialogue.StartDialogue();
+            //Dialogue.isTriggered = true;    
         }
     }
 

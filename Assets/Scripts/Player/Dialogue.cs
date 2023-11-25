@@ -9,7 +9,7 @@ public class Dialogue : MonoBehaviour
     public GameObject DialogueUI;
     public string[] lines;
     public float textSpeed;
-    public static bool isTriggered;
+    public bool isTriggered;
 
     private int index;
 
@@ -17,11 +17,8 @@ public class Dialogue : MonoBehaviour
      //Start is called before the first frame update
     void Start()
     {
-        //DialogueUI.SetActive(false);
-        if (!isTriggered) {return;}
-        DialogueUI.SetActive(true);
-        textComponent.text = string.Empty;
-        StartDialogue();            
+        DialogueUI.SetActive(false);
+        textComponent.text = string.Empty;         
     }
 
     // Update is called once per frame
@@ -33,8 +30,10 @@ public class Dialogue : MonoBehaviour
         }    
     }
 
-    void StartDialogue()
+    public void StartDialogue()
     {
+        
+        DialogueUI.SetActive(true);
         index = 0;
         StartCoroutine(TypeLine());
     }
