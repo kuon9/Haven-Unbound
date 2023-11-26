@@ -6,10 +6,10 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine.InputSystem;
 
 [System.Serializable]
-public class CheckpointData
+public class SaveData
 {
-    public float x;
-    public float y;
+    public float CheckpointX, CheckpointY;
+    public List<Item> InventorySave = new List<Item>();
 }
 
 public class CheckpointManager : MonoBehaviour
@@ -17,12 +17,13 @@ public class CheckpointManager : MonoBehaviour
     private IDataService DataService = new JsonDataService();
     public PlayerBaseInputs playerControls;
     private InputAction Interact;
-    public Transform Player;
+    private Transform Player;
 
     public Transform CurrentCheckpoint;
-    private CheckpointData checkpointData = new CheckpointData();
+    private SaveData saveData = new SaveData();
     private static CheckpointManager instance;
-    public Vector2 lastCheckpointPos;
+    private Vector2 lastCheckpointPos;
+    private Inventory inventory;
 
     void Awake()
     {
@@ -38,7 +39,8 @@ public class CheckpointManager : MonoBehaviour
     private void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player").transform;
-        Player.GetComponent<Inventory>().itemData = GetComponent<ItemDataBase>();
+        inventory = Player.GetComponent<Inventory>();
+        inventory.itemData = GetComponent<ItemDataBase>();
         LoadCheckpoint();
         Player.position = lastCheckpointPos;
     }
@@ -55,11 +57,12 @@ public class CheckpointManager : MonoBehaviour
     }
     public void LoadCheckpoint()
     {
-        CheckpointData data= DataService.LoadData<CheckpointData>("/PlayerCheckpoint.json",false);
-        checkpointData.x = data.x;
-        checkpointData.y = data.y;
-        lastCheckpointPos.x = checkpointData.x;
-        lastCheckpointPos.y = checkpointData.y;
+        SaveData data = DataService.LoadData<SaveData>("/SaveData.json",false);
+        saveData.CheckpointX = data.CheckpointX;
+        saveData.CheckpointY = data.CheckpointY;
+        lastCheckpointPos.x = saveData.CheckpointX;
+        lastCheckpointPos.y = saveData.CheckpointY;
+        inventory.PlayerItems = data.InventorySave;
     }
 
     private void SaveCheckpoint(InputAction.CallbackContext context)
@@ -67,9 +70,10 @@ public class CheckpointManager : MonoBehaviour
         if(CurrentCheckpoint != null)
         {
             lastCheckpointPos = CurrentCheckpoint.position;
-            checkpointData.x = CurrentCheckpoint.position.x;
-            checkpointData.y = CurrentCheckpoint.position.y;
-            if(DataService.SaveData("/PlayerCheckpoint.json",checkpointData,false))
+            saveData.CheckpointX = CurrentCheckpoint.position.x;
+            saveData.CheckpointY = CurrentCheckpoint.position.y;
+            saveData.InventorySave = inventory.PlayerItems;
+            if(DataService.SaveData("/SaveData.json",saveData,false))
             {
                 Debug.Log("Saved");
             }
