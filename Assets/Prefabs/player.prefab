@@ -45,7 +45,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Charge: 0
-  MaxCharge: 0
+  MaxCharge: 10
+  targetsInViewRadius: []
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 192
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 128
+  visibleTargets: []
+  FlashRadius: 0
+  FlashAngle: 0
 --- !u!1 &2296301811140399564
 GameObject:
   m_ObjectHideFlags: 0

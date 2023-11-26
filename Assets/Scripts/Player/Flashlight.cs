@@ -41,7 +41,7 @@ public class Flashlight : MonoBehaviour
         {
             if(Charge > 0)
             {
-                Debug.Log("Fire");
+                //Debug.Log("Fire");
                 FindHitTargets();
                 Charge--;
             }
@@ -61,11 +61,14 @@ public class Flashlight : MonoBehaviour
             if (Vector3.Angle(transform.up, dirToTarget) < FlashAngle / 2)
             {
                 float disToTarget = Vector3.Distance(transform.position, target.position);
-
                 if (!Physics.Raycast(transform.position, dirToTarget, disToTarget, obstacleMask))
                 {
+                    if(target.tag == "Enemy")
+                    {
                     Debug.Log(target);
                     visibleTargets.Add(target);
+
+                    }
                 }
             }
         }
