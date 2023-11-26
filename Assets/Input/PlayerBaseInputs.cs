@@ -71,6 +71,15 @@ public partial class @PlayerBaseInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Fire"",
+                    ""type"": ""Button"",
+                    ""id"": ""6670dfcb-ac8c-4dbe-aba0-f4461e18651d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -216,6 +225,17 @@ public partial class @PlayerBaseInputs : IInputActionCollection2, IDisposable
                     ""action"": ""Falling"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8d707d92-ec2c-4cdd-aaf1-5eea8c2c4c36"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -229,6 +249,7 @@ public partial class @PlayerBaseInputs : IInputActionCollection2, IDisposable
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Falling = m_Player.FindAction("Falling", throwIfNotFound: true);
+        m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -293,6 +314,7 @@ public partial class @PlayerBaseInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Falling;
+    private readonly InputAction m_Player_Fire;
     public struct PlayerActions
     {
         private @PlayerBaseInputs m_Wrapper;
@@ -302,6 +324,7 @@ public partial class @PlayerBaseInputs : IInputActionCollection2, IDisposable
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Falling => m_Wrapper.m_Player_Falling;
+        public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -326,6 +349,9 @@ public partial class @PlayerBaseInputs : IInputActionCollection2, IDisposable
                 @Falling.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFalling;
                 @Falling.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFalling;
                 @Falling.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFalling;
+                @Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
+                @Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
+                @Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -345,6 +371,9 @@ public partial class @PlayerBaseInputs : IInputActionCollection2, IDisposable
                 @Falling.started += instance.OnFalling;
                 @Falling.performed += instance.OnFalling;
                 @Falling.canceled += instance.OnFalling;
+                @Fire.started += instance.OnFire;
+                @Fire.performed += instance.OnFire;
+                @Fire.canceled += instance.OnFire;
             }
         }
     }
@@ -356,5 +385,6 @@ public partial class @PlayerBaseInputs : IInputActionCollection2, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnFalling(InputAction.CallbackContext context);
+        void OnFire(InputAction.CallbackContext context);
     }
 }
