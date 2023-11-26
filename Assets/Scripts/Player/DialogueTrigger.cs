@@ -28,11 +28,11 @@ public class DialogueTrigger : MonoBehaviour
 
     void BeginDialogue()
     {
-        if(playerinRange && Keyboard.current.eKey.wasPressedThisFrame)
+        if(playerinRange && Keyboard.current.eKey.wasPressedThisFrame && !dialogue.isTriggered)
         {       
             Debug.Log("Dialogue Starting");
             dialogue.StartDialogue();
-            //Dialogue.isTriggered = true;    
+            dialogue.isTriggered = true;    
         }
     }
 
@@ -55,5 +55,4 @@ public class DialogueTrigger : MonoBehaviour
             
         }
     }
-
 }

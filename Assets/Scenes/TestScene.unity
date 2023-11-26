@@ -465,6 +465,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6995834669903347993, guid: 4aa8a0feb5a29fa4080c16c3d2e7f67d, type: 3}
+      propertyPath: Ground.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4aa8a0feb5a29fa4080c16c3d2e7f67d, type: 3}
 --- !u!1 &473226466
@@ -482,11 +486,11 @@ GameObject:
   - component: {fileID: 473226471}
   m_Layer: 5
   m_Name: DialogueBox
-  m_TagString: Untagged
+  m_TagString: Dialogue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &473226467
 RectTransform:
   m_ObjectHideFlags: 0
@@ -585,7 +589,8 @@ MonoBehaviour:
   - Hello
   - How About now?
   - Where am i?
-  textSpeed: 0.2
+  textSpeed: 0.15
+  isTriggered: 0
 --- !u!1 &1235535274
 GameObject:
   m_ObjectHideFlags: 0

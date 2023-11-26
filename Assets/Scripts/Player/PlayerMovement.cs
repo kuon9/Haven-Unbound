@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private InputAction dash;
 
     public bool canDash;
+    public bool canMove;
     public bool canDoubleJump;
     public bool isDashing;
     public bool isJumping;
@@ -29,12 +30,14 @@ public class PlayerMovement : MonoBehaviour
     public float fallGravityMultiplier = 5f;
     AbilityTracker abilityTracker;
 
+
     
     private void Awake()
     {
         playerControls = new PlayerBaseInputs();
         rb = GetComponent<Rigidbody2D>();
         abilityTracker = GetComponent<AbilityTracker>();
+        canMove = true;
     }
 
     private void OnEnable()
@@ -57,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-        if(isDashing) {return;}
+        if(isDashing || !canMove) {return;}
         {
             moveDirection = move.ReadValue<Vector2>();
             FlipDirection();   
@@ -73,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        //if(!isGrounded) { return;}
+        if(!canMove) { return;}
         if(context.started &&(isGrounded || (canDoubleJump && abilityTracker.canDoubleJump)))
         {
             if(isGrounded)
