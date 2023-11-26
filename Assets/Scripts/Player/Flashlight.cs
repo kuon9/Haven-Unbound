@@ -39,8 +39,12 @@ public class Flashlight : MonoBehaviour
     {
         if (context.started)
         {
-            Debug.Log("Fire");
-            FindHitTargets();
+            if(Charge > 0)
+            {
+                Debug.Log("Fire");
+                FindHitTargets();
+                Charge--;
+            }
         }
     }
 

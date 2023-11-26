@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 1092963346}
   - component: {fileID: 1092963345}
   - component: {fileID: 1092963347}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -925,6 +925,10 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8971226408926074233, guid: 4aa8a0feb5a29fa4080c16c3d2e7f67d, type: 3}
+      propertyPath: MaxCharge
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8971226408926074233, guid: 4aa8a0feb5a29fa4080c16c3d2e7f67d, type: 3}
       propertyPath: FlashAngle
       value: 62
       objectReference: {fileID: 0}
@@ -938,7 +942,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8971226408926074233, guid: 4aa8a0feb5a29fa4080c16c3d2e7f67d, type: 3}
       propertyPath: obstacleMask.m_Bits
-      value: 63
+      value: 128
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4aa8a0feb5a29fa4080c16c3d2e7f67d, type: 3}

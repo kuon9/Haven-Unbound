@@ -10,6 +10,7 @@ public class SaveData
 {
     public float CheckpointX, CheckpointY;
     public List<Item> InventorySave = new List<Item>();
+    public int maxCharge, currentCharge;
 }
 
 public class CheckpointManager : MonoBehaviour
@@ -23,6 +24,8 @@ public class CheckpointManager : MonoBehaviour
     private SaveData saveData = new SaveData();
     private static CheckpointManager instance;
     private Vector2 lastCheckpointPos;
+
+    private Flashlight flashlight;
     private Inventory inventory;
 
     void Awake()
@@ -39,6 +42,7 @@ public class CheckpointManager : MonoBehaviour
     private void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player").transform;
+        flashlight = Player.GetChild(1).GetComponent<Flashlight>();
         inventory = Player.GetComponent<Inventory>();
         inventory.itemData = GetComponent<ItemDataBase>();
         LoadCheckpoint();
@@ -63,16 +67,21 @@ public class CheckpointManager : MonoBehaviour
         lastCheckpointPos.x = saveData.CheckpointX;
         lastCheckpointPos.y = saveData.CheckpointY;
         inventory.PlayerItems = data.InventorySave;
+        flashlight.Charge = data.currentCharge;
+        flashlight.MaxCharge = data.maxCharge;
     }
 
     private void SaveCheckpoint(InputAction.CallbackContext context)
     {
         if(CurrentCheckpoint != null)
         {
+            flashlight.Charge = flashlight.MaxCharge;
             lastCheckpointPos = CurrentCheckpoint.position;
             saveData.CheckpointX = CurrentCheckpoint.position.x;
             saveData.CheckpointY = CurrentCheckpoint.position.y;
             saveData.InventorySave = inventory.PlayerItems;
+            saveData.maxCharge = flashlight.MaxCharge;
+            saveData.currentCharge = flashlight.Charge;
             if(DataService.SaveData("/SaveData.json",saveData,false))
             {
                 Debug.Log("Saved");
