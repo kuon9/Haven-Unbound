@@ -37,6 +37,8 @@ public class CheckpointManager : MonoBehaviour
     }
     private void Start()
     {
+        Player = GameObject.FindGameObjectWithTag("Player").transform;
+        Player.GetComponent<Inventory>().itemData = GetComponent<ItemDataBase>();
         LoadCheckpoint();
         Player.position = lastCheckpointPos;
     }
