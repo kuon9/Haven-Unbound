@@ -54,9 +54,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   visibleTargets: []
-  light: {fileID: 0}
-  FlashRadius: 0
-  FlashAngle: 0
+  light: {fileID: 135142804115500836}
+  FlashRadius: 7.66
+  FlashAngle: 50
 --- !u!114 &135142804115500836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,10 +84,10 @@ MonoBehaviour:
   m_AlphaBlendOnOverlap: 0
   m_OverlapOperation: 0
   m_NormalMapDistance: 3
-  m_NormalMapQuality: 2
+  m_NormalMapQuality: 1
   m_UseNormalMap: 0
-  m_ShadowIntensityEnabled: 0
-  m_ShadowIntensity: 0.75
+  m_ShadowIntensityEnabled: 1
+  m_ShadowIntensity: 1
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_Vertices:
@@ -122,10 +122,10 @@ MonoBehaviour:
   m_LocalBounds:
     m_Center: {x: 0, y: -0.00000011920929, z: 0}
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
-  m_PointLightInnerAngle: 15
-  m_PointLightOuterAngle: 40
-  m_PointLightInnerRadius: 1
-  m_PointLightOuterRadius: 7.61
+  m_PointLightInnerAngle: 32.01
+  m_PointLightOuterAngle: 57.01
+  m_PointLightInnerRadius: 7.2032437
+  m_PointLightOuterRadius: 7.6822047
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
