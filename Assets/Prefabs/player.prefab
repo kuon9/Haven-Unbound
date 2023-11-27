@@ -46,14 +46,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Charge: 0
   MaxCharge: 10
-  targetsInViewRadius: []
   targetMask:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 64
   obstacleMask:
     serializedVersion: 2
     m_Bits: 128
   visibleTargets: []
+  inCone: []
   FlashRadius: 0
   FlashAngle: 0
 --- !u!1 &2296301811140399564

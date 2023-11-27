@@ -22,7 +22,6 @@ public class Flashlight : MonoBehaviour
     {
         playerControls = new PlayerBaseInputs();
     }
-
     private void OnEnable()
     {
         fire = playerControls.Player.Fire;
@@ -51,17 +50,16 @@ public class Flashlight : MonoBehaviour
     public void FindHitTargets()
     {
         visibleTargets.Clear();
-        Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, FlashRadius, targetMask);
-
+        Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, FlashRadius,targetMask);
         for (int i = 0; i < targetsInViewRadius.Length; i++)
         {
             Transform target = targetsInViewRadius[i].transform;
 
-            Vector3 dirToTarget = (target.position - transform.position).normalized;
+            Vector2 dirToTarget = (target.position - transform.position).normalized;
             if (Vector3.Angle(transform.up, dirToTarget) < FlashAngle / 2)
             {
-                float disToTarget = Vector3.Distance(transform.position, target.position);
-                if (!Physics.Raycast(transform.position, dirToTarget, disToTarget, obstacleMask))
+                float disToTarget = Vector2.Distance(transform.position, target.position);
+                if (!Physics2D.Raycast(transform.position, dirToTarget, disToTarget, obstacleMask))
                 {
                     if(target.tag == "Enemy")
                     {
@@ -73,7 +71,6 @@ public class Flashlight : MonoBehaviour
             }
         }
     }
-
     public Vector2 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
     {
         if (!angleIsGlobal)

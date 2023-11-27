@@ -14,6 +14,7 @@ public class FlashRadiusView : Editor
         Vector3 viewAngleA = light.DirFromAngle(-light.FlashAngle / 2, false);
         Vector3 viewAngleB = light.DirFromAngle(light.FlashAngle / 2, false);
 
+        Handles.color = Color.yellow;
         Handles.DrawLine(light.transform.position, light.transform.position + viewAngleA * light.FlashRadius);
         Handles.DrawLine(light.transform.position, light.transform.position + viewAngleB * light.FlashRadius);
 
@@ -21,7 +22,7 @@ public class FlashRadiusView : Editor
         foreach(Transform visibleTartget in light.visibleTargets)
         {
             Handles.DrawLine(light.transform.position, visibleTartget.position);
-        }
+        }     
     }
 
 }
