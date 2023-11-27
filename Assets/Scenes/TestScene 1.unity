@@ -1360,38 +1360,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 135142804115500836, guid: 4aa8a0feb5a29fa4080c16c3d2e7f67d, type: 3}
-      propertyPath: m_ShadowIntensity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 135142804115500836, guid: 4aa8a0feb5a29fa4080c16c3d2e7f67d, type: 3}
-      propertyPath: m_NormalMapQuality
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 135142804115500836, guid: 4aa8a0feb5a29fa4080c16c3d2e7f67d, type: 3}
-      propertyPath: m_PointLightInnerAngle
-      value: 32.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 135142804115500836, guid: 4aa8a0feb5a29fa4080c16c3d2e7f67d, type: 3}
-      propertyPath: m_PointLightOuterAngle
-      value: 57.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 135142804115500836, guid: 4aa8a0feb5a29fa4080c16c3d2e7f67d, type: 3}
-      propertyPath: m_PointLightInnerRadius
-      value: 7.2032437
-      objectReference: {fileID: 0}
-    - target: {fileID: 135142804115500836, guid: 4aa8a0feb5a29fa4080c16c3d2e7f67d, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 7.6822047
-      objectReference: {fileID: 0}
-    - target: {fileID: 135142804115500836, guid: 4aa8a0feb5a29fa4080c16c3d2e7f67d, type: 3}
-      propertyPath: m_ShadowIntensityEnabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 135142804115500836, guid: 4aa8a0feb5a29fa4080c16c3d2e7f67d, type: 3}
-      propertyPath: m_LightVolumeIntensityEnabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2296301811140399564, guid: 4aa8a0feb5a29fa4080c16c3d2e7f67d, type: 3}
       propertyPath: m_Name
       value: player
@@ -1508,18 +1476,6 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 8971226408926074233, guid: 4aa8a0feb5a29fa4080c16c3d2e7f67d, type: 3}
-      propertyPath: light
-      value: 
-      objectReference: {fileID: 2012665901}
-    - target: {fileID: 8971226408926074233, guid: 4aa8a0feb5a29fa4080c16c3d2e7f67d, type: 3}
-      propertyPath: FlashAngle
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 8971226408926074233, guid: 4aa8a0feb5a29fa4080c16c3d2e7f67d, type: 3}
-      propertyPath: FlashRadius
-      value: 7.66
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4aa8a0feb5a29fa4080c16c3d2e7f67d, type: 3}
 --- !u!114 &2012665899 stripped
@@ -1531,16 +1487,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b5d43e846b3e5f449d8685f9ceeee14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2012665901 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 135142804115500836, guid: 4aa8a0feb5a29fa4080c16c3d2e7f67d, type: 3}
-  m_PrefabInstance: {fileID: 1855440105}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
