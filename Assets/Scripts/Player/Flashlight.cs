@@ -13,6 +13,7 @@ public class Flashlight : MonoBehaviour
     public LayerMask targetMask;
     public LayerMask obstacleMask;
     public List<Transform> visibleTargets = new List<Transform>();
+    public UnityEngine.Rendering.Universal.Light2D light;
 
     public float FlashRadius;
     [Range(0, 360)]
@@ -49,6 +50,8 @@ public class Flashlight : MonoBehaviour
 
     public void FindHitTargets()
     {
+        light.enabled = true;
+        StartCoroutine(Flash());
         visibleTargets.Clear();
         Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, FlashRadius,targetMask);
         for (int i = 0; i < targetsInViewRadius.Length; i++)
@@ -70,6 +73,12 @@ public class Flashlight : MonoBehaviour
                 }
             }
         }
+    }
+    private IEnumerator Flash()
+    {
+        yield return new WaitForSeconds(.3f);
+        light.enabled = false;
+
     }
     public Vector2 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
     {
