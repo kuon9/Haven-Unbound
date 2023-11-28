@@ -152,7 +152,7 @@ public partial class @PlayerBaseInputs : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""3d5ee00e-cf37-4b0b-a645-713a1db962fb"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -765,6 +765,7 @@ public partial class @PlayerBaseInputs : IInputActionCollection2, IDisposable
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Falling = m_Player.FindAction("Falling", throwIfNotFound: true);
+        m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);

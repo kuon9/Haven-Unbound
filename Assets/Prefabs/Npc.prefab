@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerinRange: 0
-  popUpText: {fileID: 2935078206147977286}
+  popUpText: {fileID: 0}
 --- !u!61 &2935078205097589828
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -28,7 +28,7 @@ public class DialogueTrigger : MonoBehaviour
 
     void BeginDialogue()
     {
-        if(playerinRange && Keyboard.current.eKey.wasPressedThisFrame && !dialogue.isTriggered)
+        if(playerinRange && Keyboard.current.fKey.wasPressedThisFrame && !dialogue.isTriggered)
         {       
             Debug.Log("Dialogue Starting");
             dialogue.StartDialogue();
