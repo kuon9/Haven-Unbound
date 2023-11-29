@@ -14762,7 +14762,7 @@ MonoBehaviour:
   - Hello, I'd like a room.
   - Of course, here's your key and your room will be located on the second floor.
   - Thank you.
-  EndingLines:
+  endingline:
   - Remember that your room is on the second floor.
   textSpeed: 0.15
   isTriggered: 0

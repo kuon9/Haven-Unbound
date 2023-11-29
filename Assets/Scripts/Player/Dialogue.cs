@@ -129,6 +129,8 @@ public class Dialogue : MonoBehaviour
     {
         if(index < endingline.Length -1)
         {
+            index = 0;
+            textComponent.text = string.Empty;
             StartCoroutine(TypeLastLine());
         }
         else
