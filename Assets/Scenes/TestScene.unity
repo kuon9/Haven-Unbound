@@ -269,9 +269,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e26c88cff7701408481562c181c6d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 1990096655}
-  offset: {x: 0, y: 4, z: -10}
-  smoothSpeed: 0.5
 --- !u!1001 &1919034384
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -444,11 +441,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!4 &1990096655 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3820297502818966396, guid: 4aa8a0feb5a29fa4080c16c3d2e7f67d, type: 3}
-  m_PrefabInstance: {fileID: 355947484}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2087423014694250097
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -456,6 +448,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2087423014494255763, guid: 01ca1770667a1f745a00553f815dfd3a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2087423016070302422, guid: 01ca1770667a1f745a00553f815dfd3a, type: 3}
       propertyPath: m_Name
       value: Dialogue Canvas

@@ -9,8 +9,10 @@ public class Dialogue : MonoBehaviour
     public TextMeshProUGUI textComponent;
     public GameObject DialogueUI;
     public string[] lines;
+    public string[] endingline;
     public float textSpeed;
     public bool isTriggered;
+    public bool isFinished;
     private int index;
     PlayerMovement player;
 
@@ -31,7 +33,7 @@ public class Dialogue : MonoBehaviour
         // {
         //     NextLine();
         // }    
-       if(Keyboard.current.anyKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame)
+       if(Keyboard.current.anyKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame && !isFinished)
        {
             if(textComponent.text == lines[index])
             {
@@ -44,17 +46,40 @@ public class Dialogue : MonoBehaviour
 
             }     
        }
+    
+        if(Keyboard.current.anyKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame && isFinished)
+       {
+            if(textComponent.text == endingline[index])
+            {
+                LastLine();
+            }
+            else
+            {
+                StopAllCoroutines();
+                textComponent.text = endingline[index];
+
+            }     
+       }
     }
     public void StartDialogue()
     {
-        
-        //dialogue is triggered.
-        isTriggered = true;
-        // disable playermovement when in dialogue.
-        player.canMove = false;
-        DialogueUI.SetActive(true);
-        index = 0;
-        StartCoroutine(TypeLine());
+        if(!isFinished)
+        {
+            //dialogue is triggered.
+            isTriggered = true;
+            // disable playermovement when in dialogue.
+            player.canMove = false;
+            DialogueUI.SetActive(true);
+            index = 0;
+            StartCoroutine(TypeLine());      
+        }
+        else if(isFinished)
+        {
+            DialogueUI.SetActive(true);
+            isTriggered = true;
+            index = 0;
+            StartCoroutine(TypeLastLine());
+        }
     }
     
     IEnumerator TypeLine()
@@ -66,6 +91,19 @@ public class Dialogue : MonoBehaviour
             yield return new WaitForSeconds(textSpeed);    
         }
     }
+
+
+    IEnumerator TypeLastLine()
+    {
+        //Type each character 1 by 1
+        foreach(char c in endingline[index].ToCharArray())
+        {
+            textComponent.text += c;
+            yield return new WaitForSeconds(textSpeed);    
+        }
+    }
+
+
 
     void NextLine()
     {
@@ -79,6 +117,7 @@ public class Dialogue : MonoBehaviour
         {
             DialogueUI.SetActive(false);
             isTriggered = false;
+            isFinished = true;
             // this resets current string back to empty, allowing us to restart with same beginning dialogue.
             textComponent.text = string.Empty;
             // player can move after dialogue is over
@@ -86,4 +125,17 @@ public class Dialogue : MonoBehaviour
         }
     }
 
+    void LastLine()
+    {
+        if(index < endingline.Length -1)
+        {
+            StartCoroutine(TypeLastLine());
+        }
+        else
+        {
+            DialogueUI.SetActive(false);
+            textComponent.text = string.Empty;
+            isTriggered = false;
+        }
+    }
 }
