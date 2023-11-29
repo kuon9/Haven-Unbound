@@ -33,7 +33,7 @@ public class Dialogue : MonoBehaviour
         // {
         //     NextLine();
         // }    
-       if(Keyboard.current.anyKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame && !isFinished)
+       if(Mouse.current.leftButton.wasPressedThisFrame && !isFinished)
        {
             if(textComponent.text == lines[index])
             {
@@ -47,7 +47,7 @@ public class Dialogue : MonoBehaviour
             }     
        }
     
-        if(Keyboard.current.anyKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame && isFinished)
+       else if(Mouse.current.leftButton.wasPressedThisFrame && isFinished)
        {
             if(textComponent.text == endingline[index])
             {

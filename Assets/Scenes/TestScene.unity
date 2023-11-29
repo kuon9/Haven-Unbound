@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: player
       objectReference: {fileID: 0}
+    - target: {fileID: 2296301811140399564, guid: 4aa8a0feb5a29fa4080c16c3d2e7f67d, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3820297502818966396, guid: 4aa8a0feb5a29fa4080c16c3d2e7f67d, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -604,6 +608,10 @@ PrefabInstance:
     - target: {fileID: 2935078205097589838, guid: b6e00cf914c6bed4297f40fae643bd4d, type: 3}
       propertyPath: m_Name
       value: Npc
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935078205097589838, guid: b6e00cf914c6bed4297f40fae643bd4d, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6e00cf914c6bed4297f40fae643bd4d, type: 3}

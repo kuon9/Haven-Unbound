@@ -32,13 +32,14 @@ public class DialogueTrigger : MonoBehaviour
         {       
             Debug.Log("Dialogue Starting");
             dialogue.StartDialogue();
-            dialogue.isTriggered = true;    
+            dialogue.isTriggered = true;
+            popUpText.SetActive(false);    
         }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag == "Player")
+        if(other.tag == "Player" && !dialogue.isTriggered)
         {
             Debug.Log("In Range");
             popUpText.SetActive(true);
