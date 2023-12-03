@@ -6,6 +6,7 @@ TagManager:
   tags:
   - checkpointManager
   - Enemy
+  - Dialogue
   layers:
   - Default
   - TransparentFX
@@ -15,8 +16,8 @@ TagManager:
   - UI
   - Enemy
   - Wall
-  - 
-  - 
+  - Npc
+  - Player
   - 
   - 
   - 
