@@ -53,7 +53,6 @@ public class DialogueTrigger : MonoBehaviour
         {
             popUpText.SetActive(false);
             playerinRange = false;
-            
         }
     }
 }

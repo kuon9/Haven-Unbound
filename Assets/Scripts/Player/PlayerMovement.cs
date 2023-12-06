@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private InputAction jump;
     private InputAction dash;
 
+    public GameObject player;
     public bool canDash;
     public bool canMove;
     public bool canDoubleJump;
@@ -69,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(isDashing) {return;}
+        if(isDashing || !canMove) {return;}
         isGrounded = Physics2D.OverlapCircle(GroundCheck.position, .5f, Ground);
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, rb.velocity.y);
     }
