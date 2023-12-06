@@ -9,6 +9,8 @@ public class Flashlight : MonoBehaviour
     private InputAction fire;
     public int Charge;
     public int MaxCharge;
+    public bool canFlash;
+    public float flashCooldown;
 
     public LayerMask targetMask;
     public LayerMask obstacleMask;
@@ -22,6 +24,7 @@ public class Flashlight : MonoBehaviour
     private void Awake()
     {
         playerControls = new PlayerBaseInputs();
+        canFlash = true;
     }
     private void OnEnable()
     {
@@ -37,7 +40,7 @@ public class Flashlight : MonoBehaviour
     }
     public void Fire(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && canFlash)
         {
             if(Charge > 0)
             {
@@ -76,8 +79,11 @@ public class Flashlight : MonoBehaviour
     }
     private IEnumerator Flash()
     {
+        canFlash = false;
         yield return new WaitForSeconds(.3f);
         light.enabled = false;
+        yield return new WaitForSeconds(flashCooldown);
+        canFlash = true;
 
     }
     public Vector2 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
