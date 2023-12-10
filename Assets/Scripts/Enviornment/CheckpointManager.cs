@@ -9,13 +9,14 @@ using UnityEngine.InputSystem;
 public class SaveData
 {
     public float CheckpointX, CheckpointY;
-    public List<Item> InventorySave = new List<Item>();
+    public List<int> InventorySave = new List<int>();
     public int maxCharge, currentCharge;
 }
 
 public class CheckpointManager : MonoBehaviour
 {
     private IDataService DataService = new JsonDataService();
+    private List<int> ItemIdSave = new List<int>();
     public PlayerBaseInputs playerControls;
     private InputAction Interact;
     private Transform Player;
@@ -38,13 +39,13 @@ public class CheckpointManager : MonoBehaviour
         else Destroy(gameObject);
 
         playerControls = new PlayerBaseInputs();
-    }
-    private void Start()
-    {
         Player = GameObject.FindGameObjectWithTag("Player").transform;
         flashlight = Player.GetChild(1).GetComponent<Flashlight>();
         inventory = Player.GetComponent<Inventory>();
         inventory.itemData = GetComponent<ItemDataBase>();
+    }
+    private void Start()
+    {
         LoadCheckpoint();
         Player.position = lastCheckpointPos;
     }
@@ -66,11 +67,18 @@ public class CheckpointManager : MonoBehaviour
         saveData.CheckpointY = data.CheckpointY;
         lastCheckpointPos.x = saveData.CheckpointX;
         lastCheckpointPos.y = saveData.CheckpointY;
-        inventory.PlayerItems = data.InventorySave;
+        ItemIdSave = data.InventorySave;
         flashlight.Charge = data.currentCharge;
         flashlight.MaxCharge = data.maxCharge;
+        Debug.Log("Checkpoint Loaded");
     }
-
+    private void LoadInventory()
+    {
+        foreach(int item in ItemIdSave)
+        {
+            inventory.GiveItem(item);
+        }
+    }
     private void SaveCheckpoint(InputAction.CallbackContext context)
     {
         if(CurrentCheckpoint != null)
@@ -79,9 +87,13 @@ public class CheckpointManager : MonoBehaviour
             lastCheckpointPos = CurrentCheckpoint.position;
             saveData.CheckpointX = CurrentCheckpoint.position.x;
             saveData.CheckpointY = CurrentCheckpoint.position.y;
-            saveData.InventorySave = inventory.PlayerItems;
+          //  saveData.InventorySave = inventory.PlayerItems;
             saveData.maxCharge = flashlight.MaxCharge;
             saveData.currentCharge = flashlight.Charge;
+            foreach(Item item in inventory.PlayerItems)
+            {
+                saveData.InventorySave.Add(item.Item_ID);
+            }
             if(DataService.SaveData("/SaveData.json",saveData,false))
             {
                 Debug.Log("Saved");
