@@ -52,7 +52,7 @@ MonoBehaviour:
     m_Bits: 64
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 136
   visibleTargets: []
   light: {fileID: 135142804115500836}
   FlashRadius: 7.66
@@ -152,6 +152,7 @@ GameObject:
   - component: {fileID: 473339538332978227}
   - component: {fileID: 9186608382829634793}
   - component: {fileID: 3302717413393038695}
+  - component: {fileID: 7410907341986922982}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -418,6 +419,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemData: {fileID: 0}
   abilityTracker: {fileID: 473339538332978227}
+--- !u!114 &7410907341986922982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2296301811140399564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3dfa8d077bf0ed4ea94233acda0292f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UIItems: []
+  ItemPanel: {fileID: 0}
+  slotPrefab: {fileID: 8759092639296754402, guid: 6a7bd89f06a4cfe4fb2ce626cde8eea9, type: 3}
+  SlotAmount: 9
 --- !u!1 &6637729513014181390
 GameObject:
   m_ObjectHideFlags: 0

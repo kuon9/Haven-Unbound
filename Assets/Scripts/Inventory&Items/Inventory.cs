@@ -9,13 +9,27 @@ public class Inventory : MonoBehaviour
 
     public List<Item> PlayerItems = new List<Item> ();
     public List<Item> AbilityItems = new List<Item>();
-    public List<Item> EquippedItems = new List<Item>(); 
+    public List<Item> EquippedItems = new List<Item>();
 
+    private InventoryUI inventoryUi;
+    void Start()
+    {
+        inventoryUi = GetComponent<InventoryUI>();
+        GiveItem(1);
+    }
+    public void LoadInventoryUI()
+    {
+        foreach(Item item in PlayerItems)
+        {
+            inventoryUi.AddNewItem(item);
+        }
+    }
     public void GiveItem(int id)
     {
         Item item = itemData.GetItem(id);
         PlayerItems.Add(item);
-        if(item.Type == ItemType.AbilityItem)
+        inventoryUi.AddNewItem(item);
+        if (item.Type == ItemType.AbilityItem)
         {
             AbilityItems.Add(item);
             CheckAbilities();
@@ -48,6 +62,7 @@ public class Inventory : MonoBehaviour
         if(item != null)
         {
             PlayerItems.Remove(item);
+            inventoryUi.RemoveItem(item);
         }
     }
     public void CheckAbilities()
