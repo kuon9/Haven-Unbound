@@ -11,6 +11,7 @@ public class Flashlight : MonoBehaviour
     public int MaxCharge;
     public bool canFlash;
     public float flashCooldown;
+    public int flashDamage;
 
     public LayerMask targetMask;
     public LayerMask obstacleMask;
@@ -69,6 +70,7 @@ public class Flashlight : MonoBehaviour
                 {
                     if(target.tag == "Enemy")
                     {
+                        target.GetComponent<EnemyHealth>().TakeDamage(flashDamage);
                     Debug.Log(target);
                     visibleTargets.Add(target);
 
