@@ -10,12 +10,14 @@ public class EnemyMovement : MonoBehaviour
     public float knockbackForce;
     public bool patrol;
 
-    public Transform pointA;
-    public Transform pointB;
+    public Transform[] waypoints;
+    int waypointIndex = 0;
 
-    private bool movingTowardsA = true;
+    private void Start()
+    {
+        transform.position = waypoints[waypointIndex].transform.position;
+    }
 
-    // Update is called once per frame
     void Update()
     {
         if (patrol)
@@ -24,28 +26,45 @@ public class EnemyMovement : MonoBehaviour
         }
         else
         {
+            Vector3 direction = Target.transform.position - transform.position;
+            direction.Normalize();
+
+            if (direction.x >= 0.01f)
+            {
+                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            }
+            else if (direction.x <= -0.01f)
+            {
+                transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            }
             transform.position = Vector3.MoveTowards(transform.position, Target.position, Speed * Time.deltaTime);
         }
     }
 
     void Patrol()
     {
-        if (movingTowardsA)
+        Vector3 direction = waypoints[waypointIndex].transform.position - transform.position;
+        direction.Normalize();
+
+        if (direction.x >= 0.01f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, pointA.position, Speed * Time.deltaTime);
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
-        else
+        else if (direction.x <= -0.01f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, pointB.position, Speed * Time.deltaTime);
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
 
-        if (transform.position == pointA.position)
+        transform.position = Vector3.MoveTowards(transform.position, waypoints[waypointIndex].transform.position, Speed * Time.deltaTime);
+
+        if (transform.position == waypoints[waypointIndex].transform.position)
         {
-            movingTowardsA = false;
+            waypointIndex += 1;
         }
-        else if (transform.position == pointB.position)
+
+        if (waypointIndex == waypoints.Length)
         {
-            movingTowardsA = true;
+            waypointIndex = 0;
         }
     }
 }
