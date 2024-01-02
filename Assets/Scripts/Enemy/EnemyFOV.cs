@@ -6,11 +6,12 @@ public class EnemyFOV : MonoBehaviour
 {
     public LayerMask targetMask;
     public LayerMask obstacleMask;
-    public List<Transform> visibleTargets = new List<Transform>();
     public float FOVRadius;
+    public float AttackDistance;
     [Range(0, 360)]
     public float FOVAngle;
-    private EnemyMovement enemMove;
+    public EnemyMovement enemMove;
+    public bool CanSeePlayer;
 
     private void Start()
     {
@@ -22,8 +23,7 @@ public class EnemyFOV : MonoBehaviour
     {
         while (true)
         {
-
-            visibleTargets.Clear();
+            CanSeePlayer = false;
             Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, FOVRadius, targetMask);
             for (int i = 0; i < targetsInViewRadius.Length; i++)
             {
@@ -37,11 +37,12 @@ public class EnemyFOV : MonoBehaviour
                     {
                         if (target.tag == "Player")
                         {
-                            visibleTargets.Add(target);
+                            CanSeePlayer = true;
                         }
                     }
                 }
             }
+            enemMove.patrol = !CanSeePlayer;
             yield return new WaitForSeconds(.3f);
         }
     }
