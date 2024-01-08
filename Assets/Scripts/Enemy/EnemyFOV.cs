@@ -6,11 +6,17 @@ public class EnemyFOV : MonoBehaviour
 {
     public LayerMask targetMask;
     public LayerMask obstacleMask;
-    public List<Transform> visibleTargets = new List<Transform>();
     public float FOVRadius;
     [Range(0, 360)]
     public float FOVAngle;
-    private EnemyMovement enemMove;
+    public EnemyMovement enemMove;
+    public bool CanSeePlayer;
+
+    private GameObject player;
+    public int damage;
+
+    private bool canHit = true;
+    public float AttackDistance;
 
     private void Start()
     {
@@ -22,8 +28,7 @@ public class EnemyFOV : MonoBehaviour
     {
         while (true)
         {
-
-            visibleTargets.Clear();
+            CanSeePlayer = false;
             Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, FOVRadius, targetMask);
             for (int i = 0; i < targetsInViewRadius.Length; i++)
             {
@@ -37,14 +42,39 @@ public class EnemyFOV : MonoBehaviour
                     {
                         if (target.tag == "Player")
                         {
-                            visibleTargets.Add(target);
+                            CanSeePlayer = true;
+                            player = target.gameObject;
+                            FindDistance(target);
                         }
                     }
                 }
             }
+            enemMove.patrol = !CanSeePlayer;
             yield return new WaitForSeconds(.3f);
         }
     }
+    void FindDistance(Transform target)
+    {
+        Vector3 direction = target.position - transform.position;
+        float distance = direction.magnitude;
+        if (distance <= AttackDistance && CanSeePlayer && canHit)
+        {
+            Attack();
+        }
+    }
+    void Attack()
+    {
+        player.GetComponent<PlayerHealth>().TakeDamage(damage);
+        StartCoroutine(AttackCoolDown());
+    }
+
+    private IEnumerator AttackCoolDown()
+    {
+        canHit= false;
+        yield return new WaitForSeconds(1f);
+        canHit = true;
+    }
+
     public Vector2 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
     {
         if (!angleIsGlobal)

@@ -47,6 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Charge: 0
   MaxCharge: 10
+  canFlash: 0
+  flashCooldown: 0
+  flashDamage: 0
   targetMask:
     serializedVersion: 2
     m_Bits: 64
@@ -153,6 +156,7 @@ GameObject:
   - component: {fileID: 9186608382829634793}
   - component: {fileID: 3302717413393038695}
   - component: {fileID: 7410907341986922982}
+  - component: {fileID: 4224782614200738851}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -270,7 +274,9 @@ MonoBehaviour:
   moveSpeed: 7
   jumpForce: 13
   isGrounded: 0
+  player: {fileID: 0}
   canDash: 1
+  canMove: 0
   canDoubleJump: 1
   isDashing: 0
   isJumping: 0
@@ -435,6 +441,20 @@ MonoBehaviour:
   ItemPanel: {fileID: 0}
   slotPrefab: {fileID: 8759092639296754402, guid: 6a7bd89f06a4cfe4fb2ce626cde8eea9, type: 3}
   SlotAmount: 9
+--- !u!114 &4224782614200738851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2296301811140399564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4f40070eb90b65488925873b4489aad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  currentHealth: 10
 --- !u!1 &6637729513014181390
 GameObject:
   m_ObjectHideFlags: 0

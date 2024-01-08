@@ -17,11 +17,5 @@ public class FOVView : Editor
         Handles.color = Color.yellow;
         Handles.DrawLine(light.transform.position, light.transform.position + viewAngleA * light.FOVRadius);
         Handles.DrawLine(light.transform.position, light.transform.position + viewAngleB * light.FOVRadius);
-
-        Handles.color = Color.red;
-        foreach (Transform visibleTartget in light.visibleTargets)
-        {
-            Handles.DrawLine(light.transform.position, visibleTartget.position);
-        }
     }
 }
