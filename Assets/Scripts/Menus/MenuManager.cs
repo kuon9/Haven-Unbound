@@ -27,4 +27,9 @@ public class MenuManager : MonoBehaviour
     {
         SceneManager.LoadScene("Hotel");
     }
+
+    public void QuitGame() {
+        Application.Quit();
+        Debug.Log("The game has quit.");
+    }
 }
