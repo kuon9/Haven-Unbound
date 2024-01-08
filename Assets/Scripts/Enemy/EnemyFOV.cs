@@ -7,11 +7,16 @@ public class EnemyFOV : MonoBehaviour
     public LayerMask targetMask;
     public LayerMask obstacleMask;
     public float FOVRadius;
-    public float AttackDistance;
     [Range(0, 360)]
     public float FOVAngle;
     public EnemyMovement enemMove;
     public bool CanSeePlayer;
+
+    private GameObject player;
+    public int damage;
+
+    private bool canHit = true;
+    public float AttackDistance;
 
     private void Start()
     {
@@ -38,6 +43,8 @@ public class EnemyFOV : MonoBehaviour
                         if (target.tag == "Player")
                         {
                             CanSeePlayer = true;
+                            player = target.gameObject;
+                            FindDistance(target);
                         }
                     }
                 }
@@ -46,6 +53,28 @@ public class EnemyFOV : MonoBehaviour
             yield return new WaitForSeconds(.3f);
         }
     }
+    void FindDistance(Transform target)
+    {
+        Vector3 direction = target.position - transform.position;
+        float distance = direction.magnitude;
+        if (distance <= AttackDistance && CanSeePlayer && canHit)
+        {
+            Attack();
+        }
+    }
+    void Attack()
+    {
+        player.GetComponent<PlayerHealth>().TakeDamage(damage);
+        StartCoroutine(AttackCoolDown());
+    }
+
+    private IEnumerator AttackCoolDown()
+    {
+        canHit= false;
+        yield return new WaitForSeconds(1f);
+        canHit = true;
+    }
+
     public Vector2 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
     {
         if (!angleIsGlobal)
