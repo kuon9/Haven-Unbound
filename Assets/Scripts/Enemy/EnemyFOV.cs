@@ -12,7 +12,7 @@ public class EnemyFOV : MonoBehaviour
     public EnemyMovement enemMove;
     public bool CanSeePlayer;
 
-    private GameObject player;
+    public GameObject player;
     public int damage;
 
     private bool canHit = true;
@@ -28,7 +28,8 @@ public class EnemyFOV : MonoBehaviour
     {
         while (true)
         {
-            CanSeePlayer = false;
+            if (CanSeePlayer)
+                Invoke("LoosePlayer", 5f);
             Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, FOVRadius, targetMask);
             for (int i = 0; i < targetsInViewRadius.Length; i++)
             {
@@ -50,8 +51,13 @@ public class EnemyFOV : MonoBehaviour
                 }
             }
             enemMove.patrol = !CanSeePlayer;
-            yield return new WaitForSeconds(.3f);
+            yield return new WaitForSeconds(.5f);
         }
+    }
+    private void LoosePlayer()
+    {
+        CanSeePlayer = false;
+        player = null;
     }
     void FindDistance(Transform target)
     {
